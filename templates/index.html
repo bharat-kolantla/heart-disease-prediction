@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Heart Disease Prediction</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0f172a, #1e3a8a);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 950px;
+      background: #ffffff;
+      border-radius: 20px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+    }
+
+    .left-panel {
+      background: linear-gradient(160deg, #2563eb, #1d4ed8);
+      color: white;
+      padding: 50px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .left-panel h1 {
+      font-size: 34px;
+      line-height: 1.2;
+      margin-bottom: 18px;
+    }
+
+    .left-panel p {
+      font-size: 15px;
+      line-height: 1.8;
+      opacity: 0.95;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.18);
+      border: 1px solid rgba(255,255,255,0.2);
+      padding: 8px 14px;
+      border-radius: 30px;
+      font-size: 13px;
+      margin-bottom: 20px;
+      width: fit-content;
+    }
+
+    .right-panel {
+      padding: 40px;
+      background: #f8fafc;
+    }
+
+    .right-panel h2 {
+      color: #0f172a;
+      margin-bottom: 25px;
+      font-size: 28px;
+    }
+
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .full-width {
+      grid-column: span 2;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-size: 14px;
+      margin-bottom: 7px;
+      color: #334155;
+      font-weight: 600;
+    }
+
+    input {
+      padding: 12px 14px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      outline: none;
+      font-size: 14px;
+      transition: 0.3s;
+      background: white;
+    }
+
+    input:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+    }
+
+    button {
+      grid-column: span 2;
+      padding: 14px;
+      background: linear-gradient(135deg, #2563eb, #1d4ed8);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s;
+      margin-top: 8px;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
+    }
+
+    .result {
+      margin-top: 24px;
+      padding: 16px;
+      border-radius: 12px;
+      background: #e0f2fe;
+      color: #0c4a6e;
+      font-weight: 600;
+      text-align: center;
+      border: 1px solid #bae6fd;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: 1fr;
+      }
+
+      .left-panel {
+        padding: 35px;
+      }
+
+      form {
+        grid-template-columns: 1fr;
+      }
+
+      .full-width,
+      button {
+        grid-column: span 1;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="left-panel">
+      <div class="badge">AI Powered Healthcare</div>
+      <h1>Heart Disease Prediction System</h1>
+      <p>
+        Enter patient clinical details to predict the likelihood of heart disease using
+        a machine learning model trained on medical data. This intelligent system helps
+        identify risk levels quickly and efficiently.
+      </p>
+    </div>
+
+    <div class="right-panel">
+      <h2>Patient Health Details</h2>
+
+      <form action="/predict" method="post">
+        <div class="input-group">
+          <label>Age</label>
+          <input type="number" name="age" placeholder="Enter age" required>
+        </div>
+
+        <div class="input-group">
+          <label>Sex (1 = Male, 0 = Female)</label>
+          <input type="number" name="sex" placeholder="Enter sex" required>
+        </div>
+
+        <div class="input-group">
+          <label>Chest Pain Type</label>
+          <input type="number" name="cp" placeholder="Enter chest pain type" required>
+        </div>
+
+        <div class="input-group">
+          <label>Resting Blood Pressure</label>
+          <input type="number" name="trestbps" placeholder="Enter BP" required>
+        </div>
+
+        <div class="input-group">
+          <label>Cholesterol</label>
+          <input type="number" name="chol" placeholder="Enter cholesterol" required>
+        </div>
+
+        <div class="input-group">
+          <label>Fasting Blood Sugar</label>
+          <input type="number" name="fbs" placeholder="Enter sugar level" required>
+        </div>
+
+        <div class="input-group">
+          <label>Rest ECG</label>
+          <input type="number" name="restecg" placeholder="Enter ECG result" required>
+        </div>
+
+        <div class="input-group">
+          <label>Max Heart Rate</label>
+          <input type="number" name="thalach" placeholder="Enter max heart rate" required>
+        </div>
+
+        <div class="input-group">
+          <label>Exercise Induced Angina</label>
+          <input type="number" name="exang" placeholder="Enter exang" required>
+        </div>
+
+        <div class="input-group">
+          <label>Oldpeak</label>
+          <input type="number" step="any" name="oldpeak" placeholder="Enter oldpeak" required>
+        </div>
+
+        <div class="input-group">
+          <label>Slope</label>
+          <input type="number" name="slope" placeholder="Enter slope" required>
+        </div>
+
+        <div class="input-group">
+          <label>CA</label>
+          <input type="number" name="ca" placeholder="Enter CA" required>
+        </div>
+
+        <div class="input-group full-width">
+          <label>Thal</label>
+          <input type="number" name="thal" placeholder="Enter thal value" required>
+        </div>
+
+        <button type="submit">Predict Heart Disease</button>
+      </form>
+
+      {% if prediction_text %}
+      <div class="result">
+        {{ prediction_text }}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+
+</body>
+</html>
