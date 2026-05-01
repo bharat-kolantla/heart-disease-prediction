@@ -25,7 +25,8 @@ The system uses a trained Machine Learning model (`model.pkl`) to predict whethe
 
 ## 🖼️ Project Preview
 
-![Heart Disease Prediction Banner](https://images.unsplash.com/photo-1576091160399-112ba8d25d1f)
+![Heart Disease Prediction Banner]<img width="1881" height="896" alt="Screenshot 2026-05-01 195341" src="https://github.com/user-attachments/assets/030330dd-8694-4c88-a933-78f564829d06" />
+
 
 > Professional healthcare prediction interface powered by Machine Learning 🏥🤖
 
