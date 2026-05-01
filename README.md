@@ -169,8 +169,7 @@ web: gunicorn app:app
 ```
 
 ### 🔗 Render Deployment Link
-
-👉 https://render.com/
+ https://heart-disease-prediction-2-5ejl.onrender.com
 
 Deploy by connecting your GitHub repository to Render.
 
